@@ -1,6 +1,7 @@
 export interface FormAnswers {
   setor: string
   tamanho: string
+  custoEquipe: string
   papel: string
   tarefas: string[]
   maturidadeIA: string
@@ -103,13 +104,20 @@ interface StepText {
   maxLength: number
 }
 
+interface StepCurrency {
+  type: 'currency'
+  question: string
+  key: 'custoEquipe'
+  placeholder: string
+}
+
 interface StepContact {
   type: 'captura'
   question: string
   key: 'captura'
 }
 
-export type StepConfig = StepSingle | StepMulti | StepText | StepContact
+export type StepConfig = StepSingle | StepMulti | StepText | StepCurrency | StepContact
 
 export const STEPS: StepConfig[] = [
   {
@@ -135,6 +143,12 @@ export const STEPS: StepConfig[] = [
       { emoji: '🏢', label: '11 a 50' },
       { emoji: '🏭', label: 'Mais de 50' },
     ],
+  },
+  {
+    type: 'currency',
+    question: 'Quanto sua empresa gasta com equipe por mês?',
+    key: 'custoEquipe',
+    placeholder: 'Ex: 15000',
   },
   {
     type: 'single',

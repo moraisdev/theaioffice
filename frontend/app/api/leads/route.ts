@@ -37,6 +37,7 @@ export async function POST(request: NextRequest) {
         whatsapp: body.whatsapp || null,
         setor: body.setor || '',
         tamanho: body.tamanho || '',
+        custoEquipe: body.custoEquipe || null,
         papel: body.papel || '',
         tarefas: body.tarefas || '[]',
         maturidadeIA: body.maturidadeIA || '',

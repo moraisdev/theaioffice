@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { StepSingleSelect } from './steps/StepSingleSelect'
 import { StepMultiSelect } from './steps/StepMultiSelect'
 import { StepTextarea } from './steps/StepTextarea'
+import { StepCurrency } from './steps/StepCurrency'
 import { StepCaptura } from './steps/StepCaptura'
 import { ResultadoDiagnostico } from './ResultadoDiagnostico'
 import { StepWrapper } from './StepWrapper'
@@ -15,6 +16,7 @@ const TOTAL_STEPS = STEPS.length
 const initialAnswers: FormAnswers = {
   setor: '',
   tamanho: '',
+  custoEquipe: '',
   papel: '',
   tarefas: [],
   maturidadeIA: '',
@@ -76,6 +78,10 @@ export function DiagnosticoForm() {
 
   const handleMultiChange = useCallback((value: string[]) => {
     setAnswers((prev) => ({ ...prev, tarefas: value }))
+  }, [])
+
+  const handleCurrencyChange = useCallback((value: string) => {
+    setAnswers((prev) => ({ ...prev, custoEquipe: value }))
   }, [])
 
   const handleTextChange = useCallback((value: string) => {
@@ -206,6 +212,15 @@ export function DiagnosticoForm() {
               options={step.options}
               value={answers.tarefas}
               onChange={handleMultiChange}
+              onNext={goNext}
+            />
+          )}
+          {step.type === 'currency' && (
+            <StepCurrency
+              question={step.question}
+              placeholder={step.placeholder}
+              value={answers.custoEquipe}
+              onChange={handleCurrencyChange}
               onNext={goNext}
             />
           )}
